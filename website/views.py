@@ -6,11 +6,12 @@ from . import db
 views = Blueprint("views", __name__)
 
 
-@views.route("/", methods=["POST, GET"])
+@views.route("/", methods=["POST", "GET"])
 @login_required
 def home():
-    if request.method == "GET":
+    if request.method == "POST":
         note = request.form.get("note")
+
         if len(note) < 1:
             flash("Note is too short.", category="error")
         else:
